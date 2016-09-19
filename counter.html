@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>counter</title>
+    <style media="screen">
+      span.time{
+        color: red;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+
+      <span class="time"></span>
+  </body>
+  <script type="text/javascript">
+  var span = document.querySelector('span.time');
+    function count()
+    {
+      var date = new Date();
+      // var h = 22 - date.getHours;
+      // var min = (date.Minutes>)
+      span.innerHTML = (21-date.getHours())+' hrs '+(60-date.getMinutes())+' mins '+(60-date.getSeconds())+' seconds '+(1000-date.getMilliseconds()+' milliseconds');
+        console.log((21-date.getHours())+'::'+(60-date.getMinutes())+':'+(60-date.getSeconds())+'.'+(1000-date.getMilliseconds()));
+    }
+    setInterval(count, 1);
+
+  </script>
+</html>
