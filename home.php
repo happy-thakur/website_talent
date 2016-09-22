@@ -150,12 +150,13 @@ if(isset($_COOKIE['roll_no']))
            {
              $que = "select * from upload_data order by date DESC";
            }
-           echo('<script>alert("'.$que.'");</script>');
+          //  echo('<script>alert("'.$que.'");</script>');
            $res = mysqli_query($db, $que);
            if(isset($res))
            {
              while($row = mysqli_fetch_array($res, MYSQLI_ASSOC))
              {
+               $liked = false;
              if($row['liked_id'] == "")
              {
                $total_like = 0;
@@ -198,8 +199,8 @@ if(isset($_COOKIE['roll_no']))
            ?>
            <!--<embed src="<?php echo('./'.$row['file_url']); ?>" type="video">-->
            <video width="100%" height="350" style="padding-top: 5px;" controls>
-              <source src="<?php echo('./'.$row['file_url']); ?>" type="video/mp4">
-              <source src="<?php echo('./'.$row['file_url']); ?>" type="video/ogg">
+              <source src="<?php echo(''.$row['file_url']); ?>" type="video/mp4">
+              <source src="<?php echo(''.$row['file_url']); ?>" type="video/ogg">
             Your browser does not support the video tag.
             </video>
             <?php
@@ -216,7 +217,6 @@ if(isset($_COOKIE['roll_no']))
             <?php
              }
            ?>
-           console.log('<?php echo($_COOKIE['roll_no']); ?>');
            </div>
            <div class="card-content">
            <span class="card-title activator grey-text text-darken-4" id="happ_name">
@@ -226,9 +226,38 @@ if(isset($_COOKIE['roll_no']))
            </span>
              <div class="extra_content" style="margin-top: 10px; padding: 0px;">
 
-               <?php include('like.php'); ?>
+               <!-- header('Location: home.php'); -->
+              <span class="happ_content" style="width: 100px; cursor: pointer;">
+                <form method="POST" action="like.php" class="<?php echo isset($row['s_no'])? 'form'.$row['s_no'] : '' ; ?>" target="like_div">
+                  <input type="text" name="roll_no" value="<?php echo (!isset($_COOKIE['roll_no']))? '' : $_COOKIE['roll_no']; ?>" hidden="true">
+                  <input type="text" name="s_no" value="<?php echo isset($row['s_no'])? $row['s_no'] : '' ; ?>" hidden="true">
+                  <i class="material-icons" id="like"
+                  <?php
+                  if(isset($_COOKIE['roll_no']))
+                   {
+                     if($liked == true)
+                     {
+                       echo('style="color: cornflowerblue;" title="You have Liked"');
+                     }
+                     else {
+                        $temp_s_no =  isset($row['s_no'])? 'form'.$row['s_no'] : '' ;
+                        echo(' data-like="0" ');
+                       echo('onclick="like_it(this)" ');
+                      //  , \''.$temp_s_no.'\'
+                       echo('style="color: gray;" title="Like"');
+                     }
+                   }
+                   else
+                   {
+                     echo('style="color: gray;" title="You must first login to Like"');
+                   }
+                   ?>>thumb_up</i> <span id="show_like" style="padding: 5px; position: relative; top: -5px; font-size: 15px"><?php echo($total_like); ?></span>
+               </form>
 
-               <iframe src="like.php" width="700" height="100" style="position: fixed; left: 10px; top: 10px;" name="like_div">
+              </span>
+
+
+               <iframe src="like.php" width="0" height="0" style="position: fixed; display: none; left: -10px; top: 100px;" name="like_div">
                  Like
                </iframe>
 
@@ -277,14 +306,21 @@ if(isset($_COOKIE['roll_no']))
        <script type="text/javascript">
          function like_it(ele)
          {
-           alert(ele);
-          //  var col = document.querySelector('i#like');
-           ele.style.color = "cornflowerblue";
-          //  var show = document.querySelector('span#show_like');
-           var show = ele.nextElementSibling;
-           show.innerHTML = parseInt(show.innerHTML) + 1;
-           ele.parentElement.submit();
-          alert(ele.parentNode);
+          //  alert(ele);
+          var data = ele.getAttribute('data-like');
+          // alert(data);
+          if(data == 0)
+          {
+
+            //  var col = document.querySelector('i#like');
+             ele.style.color = "cornflowerblue";
+            //  var show = document.querySelector('span#show_like');
+             var show = ele.nextElementSibling;
+             show.innerHTML = parseInt(show.innerHTML) + 1;
+             ele.setAttribute("data-like", "1");
+             ele.parentElement.submit();
+            // alert(ele.parentNode);
+          }
          }
        </script>
 

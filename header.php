@@ -93,7 +93,7 @@ var i = 0;
    <style type="text/css">
    input[type="radio"]{
 						opacity: 1;
-						position: inherit; 
+						position: inherit;
 					}
    </style>
 
@@ -292,11 +292,13 @@ var i = 0;
         <i class="material-icons prefix" style="position: fixed; right: 30px; top: 30px; cursor: pointer; color: white;" onclick="hide_div_upload()">clear</i>
         <div class="main_upload">
       		<div class="card" id="upload_div_main">
-      			<form method="POST" action="upload2.php" enctype="multipart/form-data">
-              <input type="text" name="full_name" value="upload" hidden="true" />
+      			<form method="POST" action="upload2.php" nctype="multipart/form-data">
+              <input type="text" name="upload" value="upload" hidden="true" />
       				<div class="sub_div_upload">
+
       					<h5 class="upload_heading">Upload</h5>
-      					<div class="row">
+
+                <div class="row">
       					   <div class="input-field col s12">
       				   			<i class="material-icons prefix">mode_edit</i>
       			          <input id="last_name" type="text" class="validate" name="title">
@@ -330,7 +332,7 @@ var i = 0;
       						      <option value="video">Video</option>
       						      <option value="audio">Audio</option>
       						      <option value="other">Other</option>
-      						    </select> 
+      						    </select>
       						    <label>Select Type</label>-->
       							</div>
 
@@ -398,6 +400,7 @@ var i = 0;
       				          <label for="last_name">Contributers.. (if any)</label>
       				        </div>
       				    </div>
+                  <!-- <input type="file" name="name" value=""> -->
 
       				    <div class="file-field input-field" style="width: 70%;">
       				      <div class="btn">
@@ -408,7 +411,6 @@ var i = 0;
       				        <input class="file-path validate" type="text">
       				      </div>
       				    </div>
-                  
       				 <!--   <button onclick="submit" class="waves-effect waves-light btn" id="login_button" style="opacity: 1" name="upload" value="upload">Upload</button>-->
                <input type="submit" name="upload" value="upload">
 
@@ -597,10 +599,10 @@ var i = 0;
       var div = document.querySelector('div.main_outer_upload_div');
       div.style.display = 'none';
     }
-    
+
     //  logic to  close div when clicked anywhere else..
     var div_array = ["main_notification", "upload_div_main"];
-    
+
       window.addEventListener('mouseup', function(){
       for(var i=0; i<div_array.length; i++)
       {
@@ -613,7 +615,7 @@ var i = 0;
               //   // console.log(x.parentElement);
               //   // x.parentElement.style.display = "none";
               //   var temp = document.querySelector('div.main_outer_upload_div');
-              //   temp.style.display = "none";  
+              //   temp.style.display = "none";
               // }
               // else if(div_array[i] == "main_notification")
               // {
@@ -628,27 +630,27 @@ var i = 0;
                   }
                   // console.log('========='+parent.className);
                   parent  = parent.parentElement;
-                   
+
                 }
                 if(count == 0)
                 {
-                  
+
                   if(div_array[i] == "main_notification")
                   x.style.display = "none";
-                  else if(div_array[i] == "upload_div_main")
+                  else if(div_array[i] == "upload_div_mai")
                   {
                     var temp = document.querySelector('div.main_outer_upload_div');
                     temp.style.display = "none";
                   }
-                  
+
                   // console.log(x.parentElement);
                 // }
               }
-              
+
           }
       }
       });
-    
+
 
   </script>
 

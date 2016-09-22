@@ -9,7 +9,7 @@
     {
 	    if($_SERVER['REQUEST_METHOD'] == 'POST')
 	    {
-	    	if($_POST['upload'] == 'upload')
+	    	if(isset($_POST['upload']) == 'upload')
 	    	{
 				foreach ($_POST as $key => $value)
 				{
@@ -169,6 +169,10 @@
 
 
 	    	}
+				else
+				{
+					echo('<script>alert("not true");</script>');
+				}
 	    }
 			else
 			{
@@ -282,7 +286,7 @@
 						padding: 10px;
 						border-radius: 5px;
 					}
-					
+
     </style>
 
 
@@ -333,7 +337,7 @@
       						      <option value="video">Video</option>
       						      <option value="audio">Audio</option>
       						      <option value="other">Other</option>
-      						    </select> 
+      						    </select>
       						    <label>Select Type</label>-->
       							</div>
 
